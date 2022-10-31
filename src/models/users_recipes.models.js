@@ -1,0 +1,42 @@
+const {DataTypes}= require('sequelize')
+
+const db= require ('../utils/database')
+const Users = require('./users.models')
+const Recipes = require('./recipes.models')
+
+
+const UsersRecipes = db.define('users_recipes',{
+    id:{
+        type:DataTypes.UUID,
+        primaryKey:true,
+        allowNull:false
+    },
+
+    favorite:{
+        type:DataTypes.BOOLEAN,
+        allowNull:false,
+        defaultValue:false
+    },
+
+    recipeId:{
+        type:DataTypes.UUID,
+        allowNull:false,
+        field:'recipe_id',
+        references:{
+            key:'id',
+            model:Recipes
+        }
+    },
+
+    userId:{
+        type:DataTypes.UUID,
+        allowNull:false,
+        field:'user_id',
+        references:{
+            key:'id',
+            model:Users
+        }
+    },
+})
+
+module.exports = UsersRecipes

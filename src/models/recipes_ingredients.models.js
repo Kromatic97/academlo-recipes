@@ -37,9 +37,6 @@ const RecipesIngredients = db.define('recipes_ingredients',{
             model:Ingredients
         }
     },
-
-
-
 })
 
 module.exports = RecipesIngredients
