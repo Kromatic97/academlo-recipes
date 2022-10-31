@@ -21,7 +21,7 @@ const Instructions = db.define('instructions',{
     },
 
     recipeId:{
-        type:DataTypes.INTEGER,
+        type:DataTypes.UUID,
         allowNull:false,
         field:'recipe_id',
 
