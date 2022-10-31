@@ -5,7 +5,7 @@ const Users = require('./users.models')
 const Recipes = require('./recipes.models')
 
 
-const UsersRecipes = db.define('users_recipes',{
+const UsersRecipes = db.define('users_recipes', {
     id:{
         type:DataTypes.UUID,
         primaryKey:true,
@@ -18,6 +18,16 @@ const UsersRecipes = db.define('users_recipes',{
         defaultValue:false
     },
 
+    userId:{
+        type:DataTypes.UUID,
+        allowNull:false,
+        field:'user_id',
+        references:{
+            key:'id',
+            model:Users
+        }
+    },
+    
     recipeId:{
         type:DataTypes.UUID,
         allowNull:false,
@@ -28,15 +38,6 @@ const UsersRecipes = db.define('users_recipes',{
         }
     },
 
-    userId:{
-        type:DataTypes.UUID,
-        allowNull:false,
-        field:'user_id',
-        references:{
-            key:'id',
-            model:Users
-        }
-    },
 })
 
 module.exports = UsersRecipes

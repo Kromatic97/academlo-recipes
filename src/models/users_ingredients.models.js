@@ -16,7 +16,17 @@ const UsersIngredients = db.define('users_ingredients',{
         type:DataTypes.STRING,
         defaultValue:false
     },
-
+    
+    userId:{
+        type:DataTypes.UUID,
+        allowNull:false,
+        field:'user_id',
+        references:{
+            key:'id',
+            model:Users
+        }
+    },
+    
     ingredientId:{
         type:DataTypes.UUID,
         allowNull:false,
@@ -27,15 +37,6 @@ const UsersIngredients = db.define('users_ingredients',{
         }
     },
 
-    userId:{
-        type:DataTypes.UUID,
-        allowNull:false,
-        field:'user_id',
-        references:{
-            key:'id',
-            model:Users
-        }
-    },
 })
 
 module.exports = UsersIngredients
