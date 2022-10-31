@@ -17,9 +17,9 @@ const getAllCategoryById = async (id) => {
 }
 
 //?Crear categoria
-const createCategory= async (title) => {
+const createCategory= async (name) => {
     const data = await Categories.create({
-        title
+        name
     })
     return data
 }
