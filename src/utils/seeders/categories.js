@@ -13,5 +13,5 @@ Categories.bulkCreate([
     {id: 9,name: 'Desayunos'},
     {id: 10,name: 'Panes'},
     {id: 11,name: 'Platos fuertes'},
-    {id: 12,name: 'Bebidas'}
+    {id: 12,name: 'Bebidas'},
 ])
