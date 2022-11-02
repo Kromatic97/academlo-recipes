@@ -6,6 +6,8 @@ const getAllCategories = async () => {
     return data
 }
 
+
+
 //? Ver una categoria en especifico
 const getAllCategoryById = async (id) => {
     const data = await Categories.findOne({
