@@ -35,6 +35,10 @@ router.route('/me')
         userServices.deleteMyUser
     )
 
+    //todo agregar la ruta para obtener mis recetas
+
+
+
 //? /api/v1/users/:id
 router.route('/:id')
     .get(userServices.getUserById)
