@@ -12,23 +12,36 @@ const Types = require('../models/types.models')
 
 const getAllRecipes = async ()=>{
     const data = await Recipes.findAll({
+        attributes: {
+            exclude: ['userId', 'categoryId', 'createdAt', 'updatedAt']
+        },
+
+
         include:[
             {
                 model:Categories
             },
 
             {
-                model:Users
+                model:Users,
+                attributes:['firstName','lastName']
             },
 
             {
-                model:Instructions
+                model:Instructions,
+                attributes:['id','step','description']
+
             },
 
             {
                 model:RecipeIngredients,
+
                 include :{
-                    model:Ingredients
+                    model:Ingredients,
+
+                        include: {
+                            model:Types
+                        }
                 }
             },
 
