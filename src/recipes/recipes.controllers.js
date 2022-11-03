@@ -1,8 +1,41 @@
 const Recipes = require ('../models/recipes.models')
 const uuid = require ('uuid')
+const Users = require('../models/users.models')
+const Categories = require('../models/categories.models')
+const Instructions = require('../models/instructions.models')
+const RecipeIngredients = require('../models/recipes_ingredients.models')
+const Ingredients = require('../models/ingredients.models')
+const Types = require('../models/types.models')
+
+
+
 
 const getAllRecipes = async ()=>{
-    const data = await Recipes.findAll()
+    const data = await Recipes.findAll({
+        include:[
+            {
+                model:Categories
+            },
+
+            {
+                model:Users
+            },
+
+            {
+                model:Instructions
+            },
+
+            {
+                model:RecipeIngredients,
+                include :{
+                    model:Ingredients
+                }
+            },
+
+
+
+        ]
+    })
     return data
 }
 
