@@ -54,6 +54,7 @@ const getAllRecipes = async ()=>{
 
 const getRecipeById = async () => {
     const data = await Recipes.findOne({
+        
         where:{
             id
         }
@@ -82,7 +83,40 @@ const updateRecipe = async (id, data) => {
     const response = await Recipes.update(data, {
         where: {
             id
-        }
+        },
+        attributes: {
+            exclude: ['userId', 'categoryId', 'createdAt', 'updatedAt']
+        },
+
+
+        include:[
+            {
+                model:Categories
+            },
+
+            {
+                model:Users,
+                attributes:['firstName','lastName']
+            },
+
+            {
+                model:Instructions,
+                attributes:['id','step','description']
+
+            },
+
+            {
+                model:RecipeIngredients,
+
+                include :{
+                    model:Ingredients,
+
+                        include: {
+                            model:Types
+                        }
+                }
+            },
+        ]
     })
     return response
 }
