@@ -112,52 +112,18 @@ const getAllRecipes = (req, res) => {
       });
   };
   
-//   //? My user services
-  
-//   const getMyUser = (req, res) => {
-//     const id = req.user.id; //? req.user contiene la informacion del token desencriptado
-  
-//     usersControllers
-//       .getUserById(id)
-//       .then((data) => {
-//         res.status(200).json(data);
-//       })
-//       .catch((err) => {
-//         res.status(400).json({ message: err.message });
-//       });
-//   };
-  
-//   // TODO crear rutas protegidas /me, con los verbos para update y delete
-  
-//   const patchMyUser = (req, res) => {
-//     const id = req.user.id;
-//     const { firstName, lastName, phone, birthday, gender, country } = req.body;
-  
-//     usersControllers
-//       .updateUser(id, { firstName, lastName, phone, birthday, gender, country })
-//       .then(() => {
-//         res.status(200).json({ message: `Your user was edited succesfully!` });
-//       })
-//       .catch((err) => {
-//         res.status(400).json({ message: err.message });
-//       });
-//   };
-  
-//   //? 2 tipos de delete:
-//   //* 1. por administrador
-//   //* 2. por mi mismo
-  
-//   const deleteMyUser = (req, res) => {
-//     const id = req.user.id;
-  
-//     usersControllers.updateUser(id, { status: "inactive" })
-//         .then(() => {
-//           res.status(200).json({ message: `Your user was deleted succesfully!` });
-//         })
-//         .catch((err) => {
-//           res.status(400).json({ message: err.message });
-//         });
-//   };
+  const getUserRecipes = (req, res) =>{
+    const userId = req.user.id
+    recipeControllers.getMyRecipes(userId)
+    .then(data => {
+      res.status(200).json(data)
+
+    })
+    .catch(err => {
+      res.status(400).json({message:err.message})
+    })
+  }
+
   
   module.exports = {
     getAllRecipes,
@@ -165,6 +131,7 @@ const getAllRecipes = (req, res) => {
     patchRecipe,
     createRecipe,
     deleteRecipe,
+    getUserRecipes
   
   };
   
