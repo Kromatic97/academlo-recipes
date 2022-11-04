@@ -2,10 +2,19 @@
 const express = require('express');
 const db = require('./utils/database')
 const cors = require('cors')
+// const swaggerUi = require('swagger-ui-express')
+
+
+
+
 
 //? Files
+// const swaggerDoc = require('../swagger.json')
+
+
 const {port} = require('./config');
 //* Routes
+
 const userRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router')
 const categoryRouter = require('./categories/categories.router')
@@ -48,6 +57,8 @@ app.get('/',(req, res) => {
         users: `localhost:${port}/api/v1/users`
     })
 })
+
+// app.use('/api/docs', swaggerUi.serve, swaggerUi.serve(swaggerDoc))
 
 app.use('/api/v1/users', userRouter)
 
